@@ -1,32 +1,32 @@
 const translation = {
   common: {
-    welcome: 'Bem-vindo ao ',
-    appUnavailable: 'O App está indisponível',
-    appUnkonwError: 'Erro desconhecido no App',
+    welcome: 'Bem-vindo ao uso',
+    appUnavailable: 'Aplicativo indisponível',
+    appUnkonwError: 'Erro desconhecido do aplicativo',
   },
   chat: {
-    newChat: 'Novo chat',
-    newChatDefaultName: 'Nova Conversa',
-    openingStatementTitle: 'Abri a conversa',
-    powerBy: 'Desenvolvido por VT Sávio Serviços',
-    prompt: 'Prompt',
+    newChat: 'Nova conversa',
+    newChatDefaultName: 'Nova conversa',
+    openingStatementTitle: 'Declaração de abertura',
+    powerBy: 'Desenvolvido por',
+    prompt: 'Sugestão',
     privatePromptConfigTitle: 'Configurações da conversa',
     publicPromptConfigTitle: 'Sugestão inicial',
     configStatusDes: 'Antes de começar, você pode modificar as configurações da conversa',
     configDisabled:
       'As configurações da sessão anterior foram usadas para esta sessão.',
-    startChat: 'Iniciar Chat',
-    privatePolicyLeft:
+    startChat: 'Iniciar conversa',
+    privacyPolicyLeft:
       'Por favor, leia a ',
     privacyPolicyMiddle:
       'política de privacidade',
     privacyPolicyRight:
-      ' fornecido pelo desenvolvedor.',
+      ' fornecida pelo desenvolvedor do aplicativo.',
   },
   errorMessage: {
-    valueOfVarRequired: 'Os valores de variáveis são obrigatórios',
+    valueOfVarRequired: 'O valor das variáveis não pode estar vazio',
     waitForResponse:
-      'Por favor, aguarde a resposta da mensagem anterior para completar.',
+      'Aguarde a resposta da mensagem anterior ser concluída.',
   },
   variableTable: {
     optional: 'Opcional',

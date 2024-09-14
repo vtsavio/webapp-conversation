@@ -8,7 +8,7 @@ const App: FC<IMainProps> = ({
   params,
 }: any) => {
   return (
-    <Main params={params} />
+    <Main params={params} className="bg-light-green" />
   )
 }
 
