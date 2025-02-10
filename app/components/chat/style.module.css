@@ -1,6 +1,7 @@
 .answerIcon {
   position: relative;
   background: url(./icons/robot.svg);
+  background-size: contain;
 }
 
 .typeingIcon {
@@ -17,11 +18,113 @@
   border-radius: 16px;
 }
 
-
 .questionIcon {
   background: url(./icons/default-avatar.jpg);
   background-size: contain;
   border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.answerWrap {
+  position: relative;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.answerWrap:global(.dark) {
+  background-color: #222222;
+}
+
+.answer {
+  position: relative;
+}
+
+.answer .markdown-body {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  overflow-x: auto;
+}
+
+:global(.dark) .answer .markdown-body {
+  background-color: #333333;
+}
+
+.textArea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 200px;
+  resize: none;
+  border: 2px solid transparent;
+  outline: none;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.textArea:focus {
+  border-color: rgb(99 102 241);
+}
+
+:global(.dark) .textArea:focus {
+  border-color: rgb(129 140 248);
+}
+
+.count {
+  background-color: rgb(243 244 246);
+  color: rgb(107 114 128);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+:global(.dark) .count {
+  background-color: rgb(55 65 81);
+  color: rgb(156 163 175);
+}
+
+.sendBtn {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sendBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sendBtn:hover::before {
+  background-color: rgb(243 244 246);
+}
+
+:global(.dark) .sendBtn:hover::before {
+  background-color: rgb(55 65 81);
+}
+
+.itemOperation {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  display: none;
+  z-index: 10;
+}
+
+.answerWrap:hover .itemOperation {
+  display: flex;
 }
 
 .answer::before,
@@ -51,35 +154,98 @@
   background: url(./icons/question.svg) no-repeat;
 }
 
+.answerWrap:global(.dark) {
+  background-color: #222222;
+}
+
+.answer .markdown-body {
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+:global(.dark) .answer .markdown-body {
+  background-color: #333333;
+}
+
 .textArea {
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-right: 90px;
-  border-radius: 12px;
-  line-height: 20px;
-  background-color: #fff;
+  width: 100%;
+  min-height: 40px;
+  max-height: 200px;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: inherit;
+  transition: all 0.2s ease-in-out;
 }
 
-.textArea:hover {
-  background-color: #fff;
+.textArea::placeholder {
+  color: #9CA3AF;
 }
 
-/* .textArea:focus {
-  box-shadow: 0px 3px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.05);
-} */
+:global(.dark) .textArea::placeholder {
+  color: #6B7280;
+}
 
 .count {
-  /* display: none; */
-  padding: 0 2px;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 4px;
+  background-color: #F3F4F6;
+  color: #6B7280;
+  transition: all 0.2s ease-in-out;
+}
+
+:global(.dark) .count {
+  background-color: #374151;
+  color: #9CA3AF;
 }
 
 .sendBtn {
-  background: url(./icons/send.svg) center center no-repeat;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: #6B7280;
 }
 
 .sendBtn:hover {
-  background-image: url(./icons/send-active.svg);
-  background-color: #EBF5FF;
+  background-color: #F3F4F6;
+  color: #1C64F2;
+}
+
+:global(.dark) .sendBtn:hover {
+  background-color: #374151;
+  color: #60A5FA;
+}
+
+@media (max-width: 640px) {
+  .answerWrap {
+    margin: 0 -16px;
+    padding: 16px;
+  }
+
+  .textArea {
+    font-size: 16px;
+  }
+}
+
+[data-theme='dark'] .textArea {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  background-color: #333333;
+}
+
+[data-theme='dark'] .textArea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .textArea:focus+div .count {

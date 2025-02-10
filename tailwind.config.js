@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    typography: require('./typography'),
     extend: {
       colors: {
         gray: {
@@ -24,6 +25,8 @@ module.exports = {
           100: '#E1EFFE',
           200: '#C3DDFD',
           300: '#A4CAFE',
+          400: '#76A9FA',
+          500: '#3F83F8',
           600: '#1C64F2',
           700: '#1A56DB',
         },
@@ -34,7 +37,6 @@ module.exports = {
           50: '#F3FAF7',
           100: '#DEF7EC',
           800: '#03543F',
-
         },
         yellow: {
           100: '#FDF6B2',
@@ -48,6 +50,13 @@ module.exports = {
           100: '#E0EAFF',
           600: '#444CE7',
         },
+        theme: {
+          bg: 'var(--theme-bg)',
+          text: 'var(--theme-text)',
+          border: 'var(--theme-border)',
+          dark: '#222222',
+          darker: '#333333'
+        }
       },
       screens: {
         mobile: '100px',
@@ -57,6 +66,22 @@ module.exports = {
         pc: '769px',
         // => @media (min-width: 769px) { ... }
       },
+      backgroundColor: {
+        dark: '#222222',
+        darker: '#333333',
+        theme: 'var(--theme-bg)'
+      },
+      textColor: {
+        dark: {
+          primary: '#F9FAFB',
+          secondary: '#D1D5DB'
+        },
+        theme: 'var(--theme-text)'
+      },
+      borderColor: {
+        dark: '#4B5563',
+        theme: 'var(--theme-border)'
+      }
     },
   },
   plugins: [

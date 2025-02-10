@@ -305,49 +305,51 @@ const Welcome: FC<IWelcomeProps> = ({
   }
 
   return (
-    <div className='relative mobile:min-h-[48px] tablet:min-h-[64px]'>
-      {hasSetInputs && renderHeader()}
-      <div className='mx-auto pc:w-[794px] max-w-full mobile:w-full px-3.5'>
-        {/*  Has't set inputs  */}
-        {
-          !hasSetInputs && (
-            <div className='mobile:pt-[72px] tablet:pt-[128px] pc:pt-[200px]'>
-              {hasVar
-                ? (
-                  renderVarPanel()
-                )
-                : (
-                  renderNoVarPanel()
-                )}
-            </div>
-          )
-        }
-
-        {/* Has set inputs */}
-        {hasSetInputs && renderHasSetInputs()}
-
-        {/* foot */}
-        {!hasSetInputs && (
-          <div className='mt-4 flex justify-between items-center h-8 text-xs text-gray-400'>
-
-            {siteInfo.privacy_policy
-              ? <div>{t('app.chat.privacyPolicyLeft')}
-                <a
-                  className='text-gray-500'
-                  href={siteInfo.privacy_policy}
-                  target='_blank'>{t('app.chat.privacyPolicyMiddle')}</a>
-                {t('app.chat.privacyPolicyRight')}
+    <div className='relative h-full'>
+      <div className='h-full overflow-y-auto'>
+        {hasSetInputs && renderHeader()}
+        <div className='mx-auto pc:w-[794px] max-w-full mobile:w-full px-3.5'>
+          {/*  Has't set inputs  */}
+          {
+            !hasSetInputs && (
+              <div className='mobile:pt-[72px] tablet:pt-[128px] pc:pt-[200px]'>
+                {hasVar
+                  ? (
+                    renderVarPanel()
+                  )
+                  : (
+                    renderNoVarPanel()
+                  )}
               </div>
-              : <div>
-              </div>}
-            <a className='flex items-center pr-3 space-x-3' href="https://vtsavio.com.br/" target="_blank">
-              <span className='uppercase'>{t('app.chat.powerBy')}</span>
-              <FootLogo />
-            </a>
-          </div>
-        )}
+            )
+          }
+
+          {/* Has set inputs */}
+          {hasSetInputs && renderHasSetInputs()}
+
+          {/* foot */}
+          {!hasSetInputs && (
+            <div className='mt-4 flex justify-between items-center h-8 text-xs text-gray-400'>
+
+              {siteInfo.privacy_policy
+                ? <div>{t('app.chat.privacyPolicyLeft')}
+                  <a
+                    className='text-gray-500'
+                    href={siteInfo.privacy_policy}
+                    target='_blank'>{t('app.chat.privacyPolicyMiddle')}</a>
+                  {t('app.chat.privacyPolicyRight')}
+                </div>
+                : <div>
+                </div>}
+              <a className='flex items-center pr-3 space-x-3' href="https://vtsavio.com.br/" target="_blank">
+                <span className='uppercase'>{t('app.chat.powerBy')}</span>
+                <FootLogo />
+              </a>
+            </div>
+          )}
+        </div>
       </div>
-    </div >
+    </div>
   )
 }
 

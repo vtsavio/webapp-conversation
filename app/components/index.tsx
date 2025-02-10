@@ -27,6 +27,13 @@ export type IMainProps = {
   params: any
 }
 
+interface HeaderProps {
+  title?: string
+  isMobile?: boolean
+  onShowSideBar?: () => void
+  onCreateNewChat?: () => void
+}
+
 const Main: FC<IMainProps> = () => {
   const { t } = useTranslation()
   const media = useBreakpoints()
@@ -619,56 +626,70 @@ const Main: FC<IMainProps> = () => {
     return <Loading type='app' />
 
   return (
-    <div className='bg-gray-100'>
+    <div className='flex flex-col h-screen bg-gray-100 dark:bg-[#1E1E1E] transition-colors duration-200'>
       <Header
-        title={APP_INFO.title}
+        title={APP_INFO?.title || ''}
         isMobile={isMobile}
         onShowSideBar={showSidebar}
         onCreateNewChat={() => handleConversationIdChange('-1')}
       />
-      <div className="flex rounded-t-2xl bg-white overflow-hidden">
+      <div className="flex flex-1 overflow-hidden">
         {/* sidebar */}
         {!isMobile && renderSidebar()}
         {isMobile && isShowSidebar && (
-          <div className='fixed inset-0 z-50'
-            style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
-            onClick={hideSidebar}
-          >
-            <div className='inline-block' onClick={e => e.stopPropagation()}>
+          <div className='fixed inset-0 z-50 bg-black/20 dark:bg-black/40' onClick={hideSidebar}>
+            <div className='h-full' onClick={e => e.stopPropagation()}>
               {renderSidebar()}
             </div>
           </div>
         )}
-        {/* main */}
-        <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
-          <ConfigSence
-            conversationName={conversationName}
-            hasSetInputs={hasSetInputs}
-            isPublicVersion={isShowPrompt}
-            siteInfo={APP_INFO}
-            promptConfig={promptConfig}
-            onStartChat={handleStartChat}
-            canEditInputs={canEditInputs}
-            savedInputs={currInputs as Record<string, any>}
-            onInputsChange={setCurrInputs}
-          ></ConfigSence>
 
-          {
-            hasSetInputs && (
-              <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
-                <div className='h-full overflow-y-auto' ref={chatListDomRef}>
-                  <Chat
-                    chatList={chatList}
-                    onSend={handleSend}
-                    onFeedback={handleFeedback}
-                    isResponding={isResponding}
-                    checkCanSend={checkCanSend}
-                    visionConfig={visionConfig}
-                  />
+        {/* main content */}
+        <main className="flex-1 flex flex-col min-h-0 bg-white dark:bg-[#222222] transition-colors duration-200">
+          {/* Header */}
+          <div className="flex-none border-b border-gray-200 dark:border-gray-800">
+            <div className="h-14 flex items-center px-4">
+              <h1 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {conversationName}
+              </h1>
+            </div>
+          </div>
+
+          {/* Content area */}
+          <div className="flex-1 min-h-0">
+            <div className="h-full relative">
+              {!hasSetInputs ? (
+                <ConfigSence
+                  conversationName={conversationName}
+                  hasSetInputs={hasSetInputs}
+                  isPublicVersion={isShowPrompt}
+                  siteInfo={APP_INFO}
+                  promptConfig={promptConfig}
+                  onStartChat={handleStartChat}
+                  canEditInputs={canEditInputs}
+                  savedInputs={currInputs as Record<string, any>}
+                  onInputsChange={setCurrInputs}
+                />
+              ) : (
+                <div className="h-full">
+                  <div
+                    ref={chatListDomRef}
+                    className="h-full overflow-y-auto pb-[100px] px-4"
+                  >
+                    <Chat
+                      chatList={chatList}
+                      onSend={handleSend}
+                      onFeedback={handleFeedback}
+                      isResponding={isResponding}
+                      checkCanSend={checkCanSend}
+                      visionConfig={visionConfig}
+                    />
+                  </div>
                 </div>
-              </div>)
-          }
-        </div>
+              )}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   )
